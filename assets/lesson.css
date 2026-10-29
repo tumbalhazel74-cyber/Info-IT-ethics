@@ -346,3 +346,38 @@ body{overflow-x:clip;min-height:100%}
     padding: 15px;
   }
 }
+
+/* ===== Mobile Navigation Burger Fix ===== */
+.burger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  header.nav .bar {
+    position: relative;
+  }
+
+  header.nav .burger {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    position: relative;
+    z-index: 1002;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.10);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  header.nav .burger i {
+    display: inline-block !important;
+    font-size: 20px;
+    color: #22c55e;
+  }
+}
