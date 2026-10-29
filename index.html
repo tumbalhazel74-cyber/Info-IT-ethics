@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CyberSys Portal - Information Systems & IT Ethics Overview</title>
+<meta name="theme-color" content="#020503">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="icon" type="image/svg+xml" href="images/logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020503; --glass:rgba(8,20,13,.75); --glass-2:rgba(255,255,255,.06);
+  --emerald:#10b981; --neon-lime:#34d399; --ice:#a7f3d0; --text:#ffffff; --muted:#a3e635;
+  --line:rgba(52,211,153,.25); --nav-h:64px;
+  --display:'Unbounded','Inter Tight',system-ui,sans-serif; --sans:'Inter Tight',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.7;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--neon-lime);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+.mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* Floating Premium Data & Notebook Background FX */
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
+.blob{position:fixed;z-index:-1;pointer-events:none;filter:blur(90px);opacity:.3;animation:morph 16s ease-in-out infinite alternate}
+.b1{width:50vmax;height:50vmax;left:-10vmax;top:-10vmax;background:radial-gradient(circle,#065f46,transparent 70%)}
+.b2{width:45vmax;height:45vmax;right:-10vmax;top:25vh;background:radial-gradient(circle,#047857,transparent 70%);animation-delay:-6s}
+@keyframes morph{
+  0%{border-radius:40% 60% 50% 50%/40% 50% 60% 50%;transform:translate(0,0) rotate(0)}
+  100%{border-radius:60% 40% 40% 60%/50% 60% 50% 50%;transform:translate(3vmax,4vmax) rotate(30deg)}
+}
+
+/* Floating Data Icons / Notebooks background overlay */
+.floating-elements {position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.floating-element {position:absolute;color:rgba(52,211,153,0.07);font-size:3rem;animation:floatElem 12s ease-in-out infinite alternate}
+.fe-1{top:15%;left:10%;animation-delay:0s}
+.fe-2{top:65%;left:85%;animation-delay:-4s;font-size:4rem}
+.fe-3{top:80%;left:15%;animation-delay:-2s}
+.fe-4{top:30%;right:10%;animation-delay:-6s;font-size:3.5rem}
+@keyframes floatElem{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(-25px) rotate(10deg)}}
+
+/* Nav */
+.nav{position:fixed;top:calc(12px + env(safe-area-inset-top,0));left:0;right:0;z-index:1000}
+.bar{position:relative;width:min(1120px,100% - 1.5rem);margin-inline:auto;height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:0 .75rem 0 .9rem;background:rgba(4,18,11,.85);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);
+  border-radius:22px;box-shadow:0 20px 50px rgba(0,0,0,.7),inset 0 1px 0 rgba(52,211,153,.2);transition:height .3s,background .3s}
+.nav.scrolled .bar{height:58px;background:rgba(2,12,7,.95)}
+.bar::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(120deg,rgba(52,211,153,.9),rgba(255,255,255,.1) 40%,rgba(16,185,129,.9));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.brand{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+.brand i{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;font-size:1.1rem;background:linear-gradient(135deg,#059669,#10b981);color:#fff;
+  box-shadow:0 0 25px rgba(16,185,129,.6),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .35s}
+.brand:hover i{transform:rotate(-10deg) scale(1.1)}
+.bt{display:grid;line-height:1.1}
+.bt b{font-family:var(--display);font-weight:700;font-size:1.1rem;letter-spacing:-.02em;color:#ffffff}
+.bt small{font:600 .65rem var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.links{position:relative;display:flex;gap:2px;list-style:none;padding:4px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.links a{position:relative;z-index:1;display:block;padding:.5rem 1.1rem;border-radius:12px;text-decoration:none;color:#d1fae5;font-size:.92rem;font-weight:600;transition:color .25s}
+.links a:hover,.links a.active{color:#ffffff}
+.pill{position:absolute;top:4px;bottom:4px;left:0;width:0;border-radius:12px;opacity:0;pointer-events:none;
+  background:linear-gradient(135deg,rgba(52,211,153,.4),rgba(16,185,129,.35));border:1px solid rgba(52,211,153,.5);
+  box-shadow:0 0 20px rgba(52,211,153,.3),inset 0 1px 0 rgba(255,255,255,.2);
+  transition:transform .6s cubic-bezier(.34,1.5,.5,1),width .6s cubic-bezier(.34,1.5,.5,1),opacity .3s}
+.cta{display:inline-flex;align-items:center;gap:.6rem;padding:.65rem 1.2rem;border-radius:14px;background:var(--neon-lime);color:#020503;text-decoration:none;font-weight:700;font-size:.88rem;
+  transition:transform .25s,box-shadow .25s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(52,211,153,.5)}
+.burger{display:none;width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--text);font-size:1.05rem;cursor:pointer}
+.prog{position:absolute;left:24px;right:24px;bottom:0;height:2px;border-radius:2px;overflow:hidden;pointer-events:none}
+.prog i{display:block;height:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#059669,#10b981,#34d399)}
+
+/* Hero Section */
+.hero{min-height:100svh;padding:calc(var(--nav-h) + 5rem) 0 3rem;display:flex;flex-direction:column;justify-content:space-between;gap:3rem}
+.hero-top{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.5rem,7vw,5.5rem);line-height:1.05;letter-spacing:-.03em;color:#ffffff;max-width:13ch;margin:1rem 0 1.2rem}
+.hero .lead{color:#e2e8f0;max-width:54ch;font-size:1.1rem;margin-bottom:2rem;font-weight:400}
+.trust{display:grid;gap:.8rem}
+.chips{display:flex}
+.chips span{width:34px;height:34px;border-radius:50%;margin-left:-8px;border:2px solid var(--bg);background:linear-gradient(135deg,#059669,#10b981)}
+.chips span:first-child{margin-left:0}
+.hero-bottom{display:grid;grid-template-columns:230px 1fr;gap:2.5rem;align-items:center}
+.exp{display:grid;gap:.6rem}
+.exp a{text-decoration:none;font:600 .85rem var(--mono);letter-spacing:.05em;text-transform:uppercase;color:#e2e8f0;transition:.25s}
+.exp a:hover,.exp a.on{color:var(--neon-lime);padding-left:.4rem}
+
+/* Glass Card Premium Styling */
+.glass{position:relative;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);overflow:hidden;border-radius:28px}
+.glass::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(450px circle at var(--mx,50%) var(--my,50%),rgba(52,211,153,.2),transparent 65%)}
+.glass:hover::before{opacity:1}
+.feature{display:grid;grid-template-columns:180px 1fr;gap:2rem;align-items:center;padding:1.5rem}
+.orb{aspect-ratio:1;border-radius:20px;position:relative;overflow:hidden;background:linear-gradient(160deg,#064e3b,#047857 60%,#022c22)}
+.orb::after{content:"";position:absolute;width:70%;aspect-ratio:1;left:15%;top:15%;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,#fff,#34d399 40%,#047857 70%);animation:float 6s ease-in-out infinite alternate;filter:blur(1px)}
+@keyframes float{to{transform:translateY(-10px) scale(1.05)}}
+.feature .ic{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--glass-2);border:1px solid var(--line);margin-bottom:.8rem;color:var(--neon-lime)}
+.feature h2{font-family:var(--display);font-weight:700;font-size:1.3rem;color:#ffffff;margin-bottom:.4rem}
+.feature p{color:#cbd5e1;font-size:.95rem}
+
+/* Main & Topics Overview */
+main{padding-bottom:4rem}
+.sec-head{margin:2rem 0 2.5rem;display:grid;gap:.8rem}
+.sec-head h2{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,4vw,2.8rem);color:#ffffff;letter-spacing:-.03em}
+.sec-head p{color:#cbd5e1;max-width:52ch}
+.topic{padding:clamp(1.8rem,4vw,3rem);margin-bottom:2rem}
+.topic h2{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.4rem);color:#ffffff;letter-spacing:-.02em;margin:.6rem 0 1rem}
+.topic p{max-width:70ch;color:#e2e8f0;margin-bottom:1.5rem;font-size:1.02rem}
+.topic h3{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--neon-lime);margin:1.8rem 0 .8rem}
+
+.media{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;text-align:center;padding:2rem 1rem;
+  min-height:220px;margin:1.5rem 0;border-radius:20px;border:1px solid var(--line);overflow:hidden;
+  background:linear-gradient(135deg,rgba(6,95,70,.25),rgba(4,120,87,.15))}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4;filter:saturate(1.2)}
+.media i{font-size:2.5rem;color:var(--neon-lime);z-index:1}
+.media span{color:#ffffff;font-size:1rem;max-width:45ch;z-index:1;font-weight:600;text-shadow:0 2px 10px rgba(0,0,0,.8)}
+
+.points{list-style:none;display:grid;gap:.9rem;margin-bottom:1.8rem}
+.points li{display:flex;gap:1rem;padding:1.1rem 1.3rem;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:#e2e8f0;align-items:flex-start}
+.points i{color:var(--neon-lime);margin-top:.2rem;font-size:1.1rem}
+.points strong{color:#ffffff;font-weight:700}
+
+/* Reporters Section Grid Styling */
+.reporters-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem}
+.reporter-card{background:rgba(10,25,18,.8);border:1px solid var(--line);border-radius:24px;padding:2rem;text-align:center;backdrop-filter:blur(20px);transition:transform .3s ease, border-color .3s ease;display:flex;flex-direction:column;justify-content:space-between}
+.reporter-card:hover{transform:translateY(-6px);border-color:var(--neon-lime)}
+.reporter-img-wrap{width:110px;height:110px;margin:0 auto 1.2rem;border-radius:50%;overflow:hidden;border:2px solid var(--neon-lime);box-shadow:0 0 20px rgba(52,211,153,.3)}
+.reporter-img-wrap img{width:100%;height:100%;object-fit:cover}
+.reporter-card h3{font-family:var(--display);font-weight:700;font-size:1.2rem;color:#ffffff;margin-bottom:.3rem}
+.reporter-role{font-family:var(--mono);font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+.reporter-desc{color:#cbd5e1;font-size:.95rem;margin-bottom:1.5rem;line-height:1.6}
+
+/* Buttons */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:1rem;padding:.6rem .6rem .6rem 1.4rem;border-radius:14px;
+  background:rgba(255,255,255,.06);border:1px solid var(--line);color:#ffffff;text-decoration:none;
+  font:700 .85rem var(--mono);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .25s}
+.btn:hover{border-color:var(--neon-lime);transform:translateY(-2px);background:rgba(52,211,153,.1)}
+.btn .go{display:grid;place-items:center;width:40px;height:36px;border-radius:10px;background:var(--neon-lime);color:#020503;font-size:.95rem}
+
+/* References & Footer */
+.refs{padding:2rem}
+.refs h2{font-family:var(--display);font-weight:700;font-size:1.4rem;color:#ffffff;margin-bottom:1rem}
+.refs ul{list-style:none;display:grid;gap:.8rem}
+.refs li{padding-left:1.5rem;position:relative;color:#cbd5e1;word-break:break-word}
+.refs li::before{content:"/";position:absolute;left:0;color:var(--neon-lime);font-family:var(--mono);font-weight:700}
+footer{border-top:1px solid var(--line);text-align:center;padding:2.5rem 1.5rem;color:#94a3b8}
+
+@media (max-width:860px){
+  .burger{display:grid;place-items:center}
+  .cta,.bt small,.pill{display:none}
+  .links{position:absolute;top:calc(100% + 10px);left:0;right:0;flex-direction:column;gap:4px;padding:.8rem;border-radius:20px;
+    background:rgba(3,15,9,.98);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.25s}
+  .links.open{opacity:1;visibility:visible;transform:none}
+  .links a{padding:1rem;font-size:1rem}
+  .hero-top{grid-template-columns:1fr}
+  .hero-bottom{grid-template-columns:1fr;gap:1.5rem}
+  .feature{grid-template-columns:1fr;text-align:center;justify-items:center}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ===== Upgrade layer ===== */
+:root{--ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1)}
+.cursor-glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;z-index:-1;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle,rgba(52,211,153,.13),transparent 65%);transform:translate3d(-999px,-999px,0);will-change:transform}
+.blob{will-change:transform}
+/* header */
+.nav{transition:transform .6s var(--ease),top .4s var(--ease)}
+.nav.hide{transform:translateY(-140%)}
+.bar{animation:barIn 1s var(--ease) both;transition:height .45s var(--ease),background .4s,box-shadow .4s,width .5s var(--ease)}
+@keyframes barIn{from{opacity:0;transform:translateY(-30px) scale(.97)}to{opacity:1;transform:none}}
+.nav.scrolled .bar{width:min(1000px,100% - 1.5rem);box-shadow:0 14px 40px rgba(0,0,0,.75),0 0 0 1px rgba(52,211,153,.12),inset 0 1px 0 rgba(52,211,153,.25)}
+.bar::before{background:linear-gradient(120deg,rgba(52,211,153,.9),rgba(255,255,255,.1) 40%,rgba(16,185,129,.9),rgba(255,255,255,.1) 80%,rgba(52,211,153,.9));background-size:300% 100%;animation:edge 8s linear infinite}
+@keyframes edge{to{background-position:300% 0}}
+.brand i{position:relative}
+.brand i::after{content:"";position:absolute;inset:-4px;border-radius:17px;border:1px solid rgba(52,211,153,.6);animation:ping 2.8s var(--ease) infinite}
+@keyframes ping{0%{opacity:.8;transform:scale(.9)}100%{opacity:0;transform:scale(1.35)}}
+.links a{transition:color .3s,transform .3s var(--ease)}
+.links a:hover{transform:translateY(-1px)}
+.pill{transition:transform .65s var(--spring),width .65s var(--spring),opacity .3s}
+.cta{position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);transition:left .7s var(--ease)}
+.cta:hover::after{left:130%}
+.cta i{transition:transform .35s var(--ease)}.cta:hover i{transform:translateX(4px)}
+.burger{transition:background .3s,transform .3s var(--spring)}.burger:active{transform:scale(.9)}
+/* hero text */
+.w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.12em;margin-bottom:-.12em}
+.w>span{display:inline-block;transform:translateY(115%) rotate(4deg);opacity:0;animation:wUp 1.1s var(--ease) forwards;animation-delay:calc(var(--i)*.09s + .25s)}
+@keyframes wUp{to{transform:none;opacity:1}}
+.hero h1 .w:nth-child(n+3)>span{background:linear-gradient(100deg,#fff,#a7f3d0 50%,#34d399);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead,.hero .btn,.hero .trust,.hero .mono:first-child{animation:fadeUp 1.1s var(--ease) both;animation-delay:.7s}
+.hero .trust{animation-delay:.95s}.hero .btn{animation-delay:.9s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.orb::before{content:"";position:absolute;inset:0;background:conic-gradient(from 0deg,transparent,rgba(52,211,153,.35),transparent 40%);animation:spin 7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* reveal */
+.rv{opacity:0;transform:translateY(46px) scale(.97);filter:blur(8px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter .9s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none;filter:none}
+.glass{transition:border-color .5s,box-shadow .5s,opacity 1s var(--ease),transform 1s var(--ease),filter .9s var(--ease)}
+.glass:hover{border-color:rgba(52,211,153,.5);box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 40px rgba(16,185,129,.08)}
+.points li{transition:transform .4s var(--ease),border-color .3s,background .3s,opacity 1s var(--ease),filter .9s var(--ease)}
+.points li.in:hover{transform:translateX(8px);border-color:var(--neon-lime);background:rgba(52,211,153,.07)}
+.btn{transition:transform .4s var(--ease),border-color .3s,background .3s,box-shadow .4s}
+.btn:hover{box-shadow:0 12px 34px rgba(16,185,129,.25)}
+.btn .go{transition:transform .4s var(--spring)}.btn:hover .go{transform:translateX(4px) rotate(-8deg)}
+.ripple{position:absolute;border-radius:50%;background:rgba(52,211,153,.35);transform:scale(0);animation:rip .8s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(2.6);opacity:0}}
+.media img{transition:transform 1.4s var(--ease),opacity .6s}.media:hover img{transform:scale(1.08);opacity:.55}
+/* developers */
+.dev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:2rem;margin-top:2rem;perspective:1200px}
+.dev-card{position:relative;border-radius:26px;overflow:hidden;cursor:pointer;background:rgba(10,25,18,.85);border:1px solid var(--line);
+  transform-style:preserve-3d;transform:rotateX(var(--rx,0)) rotateY(var(--ry,0));transition:transform .5s var(--ease),border-color .4s,box-shadow .5s,opacity 1s var(--ease),filter .9s var(--ease)}
+.dev-card:hover,.dev-card:focus-visible{border-color:var(--neon-lime);box-shadow:0 35px 70px rgba(0,0,0,.6),0 0 50px rgba(52,211,153,.18)}
+.dev-card.tilting{transition:transform .08s linear,border-color .4s,box-shadow .5s}
+.dev-card::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .4s;background:radial-gradient(380px circle at var(--gx,50%) var(--gy,30%),rgba(255,255,255,.16),transparent 60%)}
+.dev-card:hover::after{opacity:1}
+.dev-photo{position:relative;aspect-ratio:4/4.6;overflow:hidden}
+.dev-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;transition:transform 1.2s var(--ease);transform:scale(1.02)}
+.dev-card:hover .dev-photo img{transform:scale(1.09)}
+.dev-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(2,5,3,.92))}
+.dev-tag{position:absolute;z-index:2;top:14px;left:14px;padding:.3rem .8rem;border-radius:99px;font:600 .7rem var(--mono);letter-spacing:.1em;text-transform:uppercase;background:rgba(2,12,7,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);color:var(--neon-lime)}
+.dev-info{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1.4rem 1.4rem 1.3rem;transform:translateZ(40px)}
+.dev-info h3{font-family:var(--display);font-size:1.25rem;color:#fff;margin-bottom:.2rem}
+.dev-info .reporter-role{margin-bottom:.7rem}
+.dev-more{display:inline-flex;gap:.5rem;align-items:center;font:700 .78rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--neon-lime);transition:gap .4s var(--ease)}
+.dev-card:hover .dev-more{gap:1rem}
+/* modal */
+.dev-modal{margin:auto;width:min(760px,100% - 1.5rem);max-height:calc(100dvh - 2rem);overflow:auto;padding:0;border:1px solid var(--line);border-radius:28px;color:#fff;
+  background:rgba(4,16,10,.96);box-shadow:0 40px 120px rgba(0,0,0,.8),0 0 60px rgba(16,185,129,.12);display:grid;grid-template-columns:.9fr 1.1fr}
+.dev-modal:not([open]){display:none}
+.dev-modal[open]{animation:mIn .6s var(--ease)}
+.dev-modal[open]::backdrop{background:rgba(1,6,3,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:fade .4s ease}
+.dev-modal.closing{animation:mOut .35s var(--ease) forwards}
+@keyframes mIn{from{opacity:0;transform:translateY(40px) scale(.92);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+@keyframes mOut{to{opacity:0;transform:translateY(20px) scale(.96)}}
+@keyframes fade{from{opacity:0}}
+.dm-photo{min-height:320px}.dm-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block}
+.dm-body{padding:2rem 1.8rem;display:flex;flex-direction:column;gap:.5rem;justify-content:center}
+.dm-body h3{font-family:var(--display);font-size:1.5rem;line-height:1.2}
+.dm-meta{list-style:none;display:grid;gap:.5rem;margin:.4rem 0 1.2rem;color:#d1fae5;font-size:.9rem}.dm-meta i{color:var(--neon-lime);width:1.4rem}
+.dm-close{position:absolute;top:12px;right:12px;z-index:3;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(2,12,7,.75);color:#fff;cursor:pointer;transition:transform .4s var(--spring),background .3s}
+.dm-close:hover{transform:rotate(90deg);background:rgba(52,211,153,.25)}
+body.lock{overflow:hidden}
+@media (max-width:1020px){.cta{display:none}}
+@media (max-width:860px){
+  .links li{opacity:0;transform:translateY(-10px);transition:opacity .4s var(--ease),transform .5s var(--ease);transition-delay:calc(var(--i,0)*.05s)}
+  .links.open li{opacity:1;transform:none}
+  .links a{background:rgba(255,255,255,.03)}
+  .dev-modal{grid-template-columns:1fr}.dm-photo{min-height:0;aspect-ratio:4/3.4}
+}
+@media (max-width:480px){
+  .wrap{width:min(1120px,100% - 1.5rem)}.bt b{font-size:1rem}.brand i{width:38px;height:38px}
+  .topic{padding:1.4rem 1.1rem;border-radius:22px}.points li{padding:.9rem}.hero{padding-top:calc(var(--nav-h) + 3.5rem)}
+  .dm-body{padding:1.4rem 1.2rem 1.6rem}.cursor-glow{display:none}
+}
+@media (hover:none){.dev-card{transform:none!important}.cursor-glow{display:none}}
+@media (prefers-reduced-motion:reduce){.rv,.w>span,.hero .lead,.hero .btn,.hero .trust{opacity:1!important;transform:none!important;filter:none!important}}
+
+/* ===== Logo, hero orbit, modules, profiles ===== */
+.mark{position:relative;display:grid;place-items:center;width:42px;height:42px;flex:none;transition:transform .45s var(--spring)}
+.mark img{width:100%;height:100%;display:block;filter:drop-shadow(0 0 12px rgba(16,185,129,.55))}
+.mark::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(52,211,153,.55);animation:ping 2.8s var(--ease) infinite}
+.brand:hover .mark{transform:rotate(-8deg) scale(1.08)}
+.bt b em{font-style:normal;background:linear-gradient(100deg,#a7f3d0,#34d399);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{justify-content:center}
+.hero-top{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:3rem}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.ghost{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.2rem;border-radius:14px;border:1px dashed var(--line);color:#d1fae5;text-decoration:none;font:700 .8rem var(--mono);letter-spacing:.06em;text-transform:uppercase;transition:border-color .3s,color .3s,background .3s}
+.ghost:hover{border-color:var(--neon-lime);border-style:solid;color:#fff;background:rgba(52,211,153,.08)}
+.hero .ghost{animation:fadeUp 1.1s var(--ease) both;animation-delay:1s}
+.orbit-wrap{--s:min(420px,82vw);--r:calc(var(--s)*.4);position:relative;justify-self:center;width:var(--s);aspect-ratio:1;display:grid;place-items:center;animation:fadeUp 1.2s var(--ease) both;animation-delay:.5s}
+.ring{position:absolute;border-radius:50%;pointer-events:none}
+.ring.r1{inset:10%;border:1px dashed rgba(52,211,153,.3)}
+.ring.r2{inset:28%;border:1px solid rgba(52,211,153,.12);background:radial-gradient(circle,rgba(16,185,129,.18),transparent 70%)}
+.orbit{position:absolute;inset:0;animation:spin 60s linear infinite}
+.node{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px;display:grid;place-items:center;transform:rotate(var(--a)) translateY(calc(-1 * var(--r))) rotate(calc(-1 * var(--a)))}
+.ni{display:grid;justify-items:center;gap:.35rem;animation:spin 60s linear infinite reverse}
+.ni i{display:grid;place-items:center;width:50px;height:50px;border-radius:16px;font-size:1.1rem;color:var(--neon-lime);background:rgba(4,18,11,.88);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 18px rgba(52,211,153,.15)}
+.ni small{font:600 .6rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#d1fae5}
+.hero-logo{width:38%;filter:drop-shadow(0 0 40px rgba(16,185,129,.55));animation:float 6s ease-in-out infinite alternate}
+.stats{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);border-radius:24px;margin-top:3rem}
+.stats li{padding:1.3rem 1.6rem;display:grid;gap:.15rem;border-left:1px solid var(--line)}
+.stats li:first-child{border-left:0}
+.stats b{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.1;background:linear-gradient(100deg,#fff,#6ee7b7);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats span{font:600 .7rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#cbd5e1}
+.topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;margin-bottom:2rem}
+.module{display:flex;flex-direction:column;margin-bottom:0}
+.module h2{font-size:clamp(1.35rem,2.4vw,1.85rem)}
+.module p{font-size:.98rem}
+.module .media{min-height:190px;margin-top:0}
+.module .btn{margin-top:auto;align-self:flex-start}
+.mod-top{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.mod-num{font-family:var(--display);font-weight:700;font-size:2.8rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(52,211,153,.55)}
+.dev-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))}
+.dev-card{display:grid;grid-template-columns:40% 1fr}
+.dev-photo{aspect-ratio:auto;min-height:290px}
+.dev-photo img{position:absolute;inset:0}
+.dev-photo::after{background:linear-gradient(90deg,transparent 55%,rgba(10,25,18,.92))}
+.dev-info{position:relative;display:flex;flex-direction:column;justify-content:center;gap:.3rem;padding:1.6rem 1.5rem;transform:translateZ(30px)}
+.dev-id{font:600 .66rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#6ee7b7;opacity:.85}
+.dev-info .reporter-role{margin-bottom:.3rem}
+.dev-bio{color:#cbd5e1;font-size:.9rem;line-height:1.55}
+.skills{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0 .9rem}
+.skills span{padding:.25rem .65rem;border-radius:99px;font:600 .64rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#d1fae5;background:rgba(52,211,153,.08);border:1px solid var(--line)}
+.dm-body .skills{margin:0 0 .4rem}
+.site-foot{display:grid;gap:1.6rem}
+.foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.2rem}
+.foot-links{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem}
+.foot-links a{text-decoration:none;color:#cbd5e1;font-weight:600;font-size:.92rem;transition:color .25s}
+.foot-links a:hover{color:var(--neon-lime)}
+@media (max-width:900px){.hero-top{grid-template-columns:1fr;gap:2rem}.orbit-wrap{--s:min(340px,86vw)}.topics{grid-template-columns:1fr}}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.stats li:nth-child(odd){border-left:0}.stats li:nth-child(n+3){border-top:1px solid var(--line)}.stats li{padding:1.1rem 1.2rem}
+  .node{width:70px;height:70px;margin:-35px}.ni i{width:42px;height:42px;border-radius:13px;font-size:.95rem}.ni small{font-size:.52rem}}
+@media (max-width:520px){.dev-card{grid-template-columns:1fr}.dev-photo{min-height:0;aspect-ratio:4/3.6}.dev-photo::after{background:linear-gradient(180deg,transparent 55%,rgba(10,25,18,.92))}
+  .mark{width:38px;height:38px}.foot-grid{flex-direction:column;text-align:center}.foot-links{justify-content:center}}
+@media (prefers-reduced-motion:reduce){.hero .ghost,.orbit-wrap{opacity:1!important;transform:none!important;filter:none!important}}
+
+/* ===== Smooth & responsive layer ===== */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.3s}
+html{overflow-x:clip}
+body{-webkit-tap-highlight-color:transparent;text-rendering:optimizeLegibility}
+.blob{border-radius:50%;animation:drift 22s ease-in-out infinite alternate;transform:translateZ(0)}
+@keyframes drift{to{transform:translate3d(3vmax,4vmax,0) rotate(30deg)}}
+.orbit,.ni,.hero-logo,.cursor-glow{will-change:transform}
+.rv{filter:none!important;transform:translate3d(0,28px,0);transition:opacity .75s var(--ease),transform .75s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{transform:none}
+.glass{transition:border-color .4s,box-shadow .4s,opacity .75s var(--ease),transform .75s var(--ease)}
+.points li{transition:transform .4s var(--ease),border-color .3s,background .3s,opacity .75s var(--ease)}
+.dev-card{transition:transform .5s var(--ease),border-color .4s,box-shadow .5s,opacity .75s var(--ease)}
+.dev-card.rv.in{transform:rotateX(var(--rx,0)) rotateY(var(--ry,0))}
+.dev-card.tilting{transition:transform .08s linear,border-color .4s,box-shadow .5s}
+.hero{min-height:100dvh}
+footer.site-foot{padding-bottom:calc(2.5rem + env(safe-area-inset-bottom,0px))}
+@media (min-width:1400px){.wrap{width:min(1240px,100% - 4rem)}}
+@media (max-width:900px),(hover:none){
+  .glass,.reporter-card{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(8,20,13,.92)}
+  .blob{filter:blur(60px);animation:none}
+  .cursor-glow{display:none}
+  .glass::before{display:none}
+}
+@media (hover:none){.btn:hover,.cta:hover{transform:none}}
+@media (max-width:640px){
+  .hero{padding-top:calc(var(--nav-h) + 3rem);gap:2rem}
+  .hero h1{max-width:none;font-size:clamp(1.9rem,8.4vw,3rem)}
+  .hero .lead{font-size:1rem}
+  .hero-actions .btn,.hero-actions .ghost{width:100%;justify-content:space-between}
+  .sec-head{margin:1.5rem 0 1.8rem}
+  .topic h2{overflow-wrap:anywhere}
+  .foot-links a{padding:.5rem 0}
+}
+
+
+/* ===== Interactive Quizzes ===== */
+.quiz-section {
+  margin: 2rem 0;
+}
+
+.quiz-intro {
+  color: #cbd5e1;
+  max-width: 65ch;
+  margin-bottom: 2rem;
+}
+
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.quiz-card {
+  min-width: 0;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(5, 18, 11, .88);
+}
+
+.quiz-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .4rem .75rem;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  color: var(--ice);
+  background: rgba(52, 211, 153, .08);
+  font: 600 .7rem var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.quiz-card h3 {
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.5;
+  color: #fff;
+  margin: 1rem 0 .6rem;
+}
+
+.quiz-description {
+  color: #cbd5e1;
+  font-size: .94rem;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-progress {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .08);
+  margin: 1rem 0 1.5rem;
+}
+
+.quiz-progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #059669, #34d399);
+  transition: width .35s ease;
+}
+
+.quiz-progress-text {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  color: #a7f3d0;
+  font: 500 .72rem var(--mono);
+}
+
+.quiz-question {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(52, 211, 153, .15);
+}
+
+.quiz-question:last-child {
+  border-bottom: 0;
+}
+
+.quiz-question h4 {
+  font-size: .98rem;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #fff;
+  margin-bottom: .8rem;
+}
+
+.quiz-number {
+  display: inline-grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  margin-right: .45rem;
+  border-radius: 8px;
+  color: #020503;
+  background: var(--neon-lime);
+  font: 700 .75rem var(--mono);
+  vertical-align: middle;
+}
+
+.quiz-options {
+  display: grid;
+  gap: .55rem;
+}
+
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: .7rem;
+  padding: .8rem .85rem;
+  border: 1px solid rgba(52, 211, 153, .16);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .025);
+  color: #d1fae5;
+  font-size: .9rem;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: border-color .2s, background .2s, transform .2s;
+}
+
+.quiz-option:hover {
+  border-color: rgba(52, 211, 153, .6);
+  background: rgba(52, 211, 153, .07);
+}
+
+.quiz-option:has(input:checked) {
+  border-color: var(--neon-lime);
+  background: rgba(16, 185, 129, .13);
+}
+
+.quiz-option input {
+  flex: 0 0 auto;
+  margin-top: .25rem;
+  accent-color: var(--neon-lime);
+}
+
+.quiz-option.correct {
+  border-color: #34d399;
+  background: rgba(16, 185, 129, .15);
+}
+
+.quiz-option.incorrect {
+  border-color: #fb7185;
+  background: rgba(244, 63, 94, .1);
+}
+
+.quiz-feedback {
+  display: none;
+  margin-top: .7rem;
+  padding: .75rem .85rem;
+  border-radius: 12px;
+  font-size: .84rem;
+  line-height: 1.6;
+}
+
+.quiz-feedback.show {
+  display: block;
+}
+
+.quiz-feedback.good {
+  color: #a7f3d0;
+  border: 1px solid rgba(52, 211, 153, .3);
+  background: rgba(16, 185, 129, .08);
+}
+
+.quiz-feedback.bad {
+  color: #fecdd3;
+  border: 1px solid rgba(251, 113, 133, .3);
+  background: rgba(244, 63, 94, .07);
+}
+
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-top: 1.5rem;
+}
+
+.quiz-actions .btn {
+  justify-content: space-between;
+  padding-left: 1rem;
+}
+
+.quiz-actions .quiz-reset {
+  background: transparent;
+}
+
+.quiz-result {
+  display: none;
+  margin-top: 1.2rem;
+  padding: 1.2rem;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(16, 185, 129, .08);
+}
+
+.quiz-result.show {
+  display: block;
+  animation: fadeUp .4s ease both;
+}
+
+.quiz-result h4 {
+  font-family: var(--display);
+  color: var(--neon-lime);
+  font-size: 1.1rem;
+  margin-bottom: .35rem;
+}
+
+.quiz-result p {
+  color: #d1fae5;
+  margin: 0;
+  font-size: .92rem;
+}
+
+.quiz-note {
+  color: #94a3b8;
+  font-size: .78rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-card {
+    padding: 1.1rem .9rem;
+    border-radius: 20px;
+  }
+
+  .quiz-option {
+    padding: .75rem;
+    font-size: .86rem;
+  }
+
+  .quiz-actions {
+    flex-direction: column;
+  }
+
+  .quiz-actions .btn {
+    width: 100%;
+  }
+}
+
+
+.quiz-navigation {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.quiz-next {
+  cursor: pointer;
+}
+
+.quiz-final-score {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 1rem 0;
+}
+
+.quiz-check[hidden],
+.quiz-next[hidden] {
+  display: none !important;
+}
+
+
+</style>
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="cursor-glow" id="cg" aria-hidden="true"></div><div class="blob b1"></div><div class="blob b2"></div>
+
+<!-- Floating Notebook & Data Icons Background Overlay -->
+<div class="floating-elements" aria-hidden="true">
+  <i class="fa-solid fa-book-open floating-element fe-1"></i>
+  <i class="fa-solid fa-database floating-element fe-2"></i>
+  <i class="fa-solid fa-laptop-code floating-element fe-3"></i>
+  <i class="fa-solid fa-shield-halved floating-element fe-4"></i>
+</div>
+
+<header class="nav" id="nav">
+  <div class="bar">
+    <a href="#home" class="brand" aria-label="CyberSys home"><span class="mark"><img src="images/logo.png" alt="" width="42" height="42"></span><span class="bt"><b>Cyber<em>Sys</em></b><small>IS &amp; IT Ethics Portal</small></span></a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="links"><i class="fa-solid fa-bars"></i></button>
+    <ul class="links" id="links">
+      <li class="pill" id="pill" aria-hidden="true"></li>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#topic1">Topic 1</a></li>
+      <li><a href="#topic2">Topic 2</a></li>
+      <li><a href="#quizzes">Activities</a></li>
+      <li><a href="#developers">Developers</a></li>
+      <li><a href="#references">References</a></li>
+    </ul>
+    <a href="#topic1" class="cta">Start Learning <i class="fa-solid fa-arrow-right"></i></a>
+    <span class="prog" aria-hidden="true"><i id="prog"></i></span>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap hero-top">
+    <div class="hero-copy">
+      <span class="mono">/ Enterprise Information Systems &amp; Ethics</span>
+      <h1 id="title">Information Systems &amp; IT Ethics</h1>
+      <p class="lead">Welcome to the official learning portal. Explore core architectural components of Information Systems, data management lifecycles, and professional ethical decision-making frameworks in technology.</p>
+      <div class="hero-actions">
+        <a href="#topic1" class="btn rp">Start with Topic 1 <span class="go"><i class="fa-solid fa-arrow-right"></i></span></a>
+        <a href="#developers" class="ghost">Meet the team <i class="fa-solid fa-user-group"></i></a>
+      </div>
+    </div>
+    <div class="orbit-wrap" aria-hidden="true">
+      <div class="ring r1"></div><div class="ring r2"></div>
+      <div class="orbit">
+        <span class="node" style="--a:0deg"><span class="ni"><i class="fa-solid fa-microchip"></i><small>Hardware</small></span></span>
+        <span class="node" style="--a:60deg"><span class="ni"><i class="fa-solid fa-code"></i><small>Software</small></span></span>
+        <span class="node" style="--a:120deg"><span class="ni"><i class="fa-solid fa-database"></i><small>Data</small></span></span>
+        <span class="node" style="--a:180deg"><span class="ni"><i class="fa-solid fa-users"></i><small>People</small></span></span>
+        <span class="node" style="--a:240deg"><span class="ni"><i class="fa-solid fa-list-check"></i><small>Procedures</small></span></span>
+        <span class="node" style="--a:300deg"><span class="ni"><i class="fa-solid fa-network-wired"></i><small>Networks</small></span></span>
+      </div>
+      <img class="hero-logo" src="images/logo.png" alt="">
+    </div>
+  </div>
+  <div class="wrap">
+    <ul class="stats glass">
+      <li><b>02</b><span>Lesson modules</span></li>
+      <li><b>10</b><span>Lesson sections</span></li>
+      <li><b>04</b><span>Video guides</span></li>
+      <li><b>02</b><span>Developers</span></li>
+    </ul>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="sec-head">
+    <span class="mono">/ Curriculum Overview</span>
+    <h2>Featured Learning Modules</h2>
+    <p>Review the module summaries below and click through to explore full lessons complete with video guides, components, and frameworks.</p>
+  </div>
+
+  <div class="topics">
+  <!-- TOPIC 1 -->
+  <article class="glass topic module" id="topic1">
+    <div class="mod-top"><span class="mono">/ Lesson Module 01</span><span class="mod-num">01</span></div>
+    <h2>Information Systems and Information Management</h2>
+    <p>Understand how integrated networks of people, hardware, software, data, procedures, and networks collect, process, and distribute crucial enterprise data to support business decisions.</p>
+    
+    <div class="media">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80" alt="Information Systems Architecture">
+      <i class="fa-solid fa-server"></i>
+      <span>Covers the 6 Core Components, 5 Major Information Systems (TPS, MIS, DSS, EIS, OAS), Information Lifecycles, and Data Quality.</span>
+    </div>
+
+    <h3>Key Module Highlights</h3>
+    <ul class="points">
+      <li><i class="fa-solid fa-circle-check"></i><div><strong>6 Core Components:</strong> Hardware, Software, Data, People, Procedures, and Networks.</div></li>
+      <li><i class="fa-solid fa-circle-check"></i><div><strong>Enterprise Systems:</strong> Transaction Processing (TPS), Management Reports (MIS), and Decision Support (DSS).</div></li>
+      <li><i class="fa-solid fa-circle-check"></i><div><strong>Information Quality:</strong> Ensuring high accuracy, completeness, reliability, and timeliness for effective management.</div></li>
+    </ul>
+
+    <a class='btn rp' href='topic1.html'><span>Open Full Topic 1 Lesson</span> <span class="go"><i class="fa-solid fa-arrow-right"></i></span></a>
+  </article>
+
+  <!-- TOPIC 2 -->
+  <article class="glass topic module" id="topic2">
+    <div class="mod-top"><span class="mono">/ Lesson Module 02</span><span class="mod-num">02</span></div>
+    <h2>Ethical Decision-Making in Information Technology</h2>
+    <p>Examine how technology professionals analyze complex digital dilemmas, apply moral frameworks, and uphold professional standards concerning security, privacy, and social welfare.</p>
+    
+    <div class="media">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80" alt="Tech Ethics & Decision Making">
+      <i class="fa-solid fa-scale-balanced"></i>
+      <span>Explores Ethical Frameworks (Utilitarianism, Deontology, Virtue Ethics), Systematic Problem-Solving Approaches, and Professional Judgment.</span>
+    </div>
+
+    <h3>Key Module Highlights</h3>
+    <ul class="points">
+      <li><i class="fa-solid fa-circle-check"></i><div><strong>Major Frameworks:</strong> Utilitarianism, Deontology, Virtue Ethics, Rights-Based, and Justice &amp; Fairness.</div></li>
+      <li><i class="fa-solid fa-circle-check"></i><div><strong>Problem-Solving Workflow:</strong> Identify problem, gather information, evaluate options, decide, implement &amp; review.</div></li>
+      <li><i class="fa-solid fa-circle-check"></i><div><strong>Professional Responsibility:</strong> Adhering to codes of ethics, social impact awareness, and continuous learning.</div></li>
+    </ul>
+
+    <a class='btn rp' href='topic2.html'><span>Open Full Topic 2 Lesson</span> <span class="go"><i class="fa-solid fa-arrow-right"></i></span></a>
+  </article>
+  </div>
+
+
+  
+  <!-- INTERACTIVE QUIZZES -->
+  <section class="glass topic quiz-section" id="quizzes">
+    <span class="mono">/ Knowledge Check</span>
+    <h2>Test Your Knowledge</h2>
+    <p class="quiz-intro">
+      Challenge yourself with these quizzes based on the two lesson modules.
+      Select one answer for every question, then check your score and review
+      the explanations to reinforce what you learned.
+    </p>
+
+    <div class="quiz-grid">
+
+      <!-- QUIZ 1 -->
+      <article class="quiz-card" data-quiz="systems">
+        <span class="quiz-label">
+          <i class="fa-solid fa-database"></i> Quiz 01 · Information Systems
+        </span>
+        <h3>Information Systems and Information Management</h3>
+        <p class="quiz-description">
+          Identify the six core components of an information system and
+          recognize the major types of information systems used by organizations.
+        </p>
+
+        <div class="quiz-progress-text">
+          <span>Quiz progress</span>
+          <span class="progress-count">0 / 8 answered</span>
+        </div>
+        <div class="quiz-progress" aria-hidden="true">
+          <span></span>
+        </div>
+
+        <div class="quiz-questions"></div>
+
+        <div class="quiz-actions">
+          <button type="button" class="btn rp quiz-check">
+            <span>Check Answers</span>
+            <span class="go"><i class="fa-solid fa-check"></i></span>
+          </button>
+          <button type="button" class="btn rp quiz-reset">
+            <span>Retake Quiz</span>
+            <span class="go"><i class="fa-solid fa-rotate-right"></i></span>
+          </button>
+        </div>
+
+        <div class="quiz-result" role="status" aria-live="polite">
+          <h4 class="result-title">Your Result</h4>
+          <p class="result-text"></p>
+        </div>
+        <p class="quiz-note">8 questions · Multiple choice · Instant feedback</p>
+      </article>
+
+      <!-- QUIZ 2 -->
+      <article class="quiz-card" data-quiz="ethics">
+        <span class="quiz-label">
+          <i class="fa-solid fa-scale-balanced"></i> Quiz 02 · IT Ethics
+        </span>
+        <h3>Ethical Decision-Making in Information Technology</h3>
+        <p class="quiz-description">
+          Apply ethical frameworks to real-world technology situations,
+          including privacy, fairness, professional responsibility, and
+          systematic ethical problem-solving.
+        </p>
+
+        <div class="quiz-progress-text">
+          <span>Quiz progress</span>
+          <span class="progress-count">0 / 8 answered</span>
+        </div>
+        <div class="quiz-progress" aria-hidden="true">
+          <span></span>
+        </div>
+
+        <div class="quiz-questions"></div>
+
+        <div class="quiz-actions">
+          <button type="button" class="btn rp quiz-check">
+            <span>Check Answers</span>
+            <span class="go"><i class="fa-solid fa-check"></i></span>
+          </button>
+          <button type="button" class="btn rp quiz-reset">
+            <span>Retake Quiz</span>
+            <span class="go"><i class="fa-solid fa-rotate-right"></i></span>
+          </button>
+        </div>
+
+        <div class="quiz-result" role="status" aria-live="polite">
+          <h4 class="result-title">Your Result</h4>
+          <p class="result-text"></p>
+        </div>
+        <p class="quiz-note">8 questions · Multiple choice · Instant feedback</p>
+      </article>
+
+    </div>
+  </section>
+
+
+
+  <!-- DEVELOPERS -->
+  <section class="glass topic" id="developers">
+    <span class="mono">/ Development Team</span>
+    <h2>Meet the Developers</h2>
+    <p>The students who researched, designed, and built this learning portal. Tap a card to see their profile.</p>
+    <div class="dev-grid">
+      <article class="dev-card" data-dev="hazel" tabindex="0" role="button" aria-label="Open Hazel L. Tumbal profile">
+        <div class="dev-photo"><img src="images/mee.jpg" alt="Hazel L. Tumbal" loading="lazy" decoding="async"><span class="dev-tag">Topic 1</span></div>
+        <div class="dev-info">
+          <span class="dev-id">DEV-01 · IS &amp; IM</span>
+          <h3>Hazel L. Tumbal</h3><div class="reporter-role">Developer &amp; Topic 1 Researcher</div>
+          <p class="dev-bio">Researched Information Systems architecture, data management lifecycles, and enterprise database structures.</p>
+          <div class="skills"><span>Info Systems</span><span>Data Lifecycle</span><span>Databases</span></div>
+          <span class="dev-more">View Profile <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </article>
+      <article class="dev-card" data-dev="jewelyn" tabindex="0" role="button" aria-label="Open Jewelyn A. Llorag profile">
+        <div class="dev-photo"><img src="images/Llorag%2C%20Jewelyn%20A.%20copy-1%401353484755.jpg" alt="Jewelyn A. Llorag" loading="lazy" decoding="async"><span class="dev-tag">Topic 2</span></div>
+        <div class="dev-info">
+          <span class="dev-id">DEV-02 · IT Ethics</span>
+          <h3>Jewelyn A. Llorag</h3><div class="reporter-role">Developer &amp; Topic 2 Researcher</div>
+          <p class="dev-bio">Researched IT ethics, professional judgment frameworks, and moral decision-making models in technology.</p>
+          <div class="skills"><span>IT Ethics</span><span>Frameworks</span><span>Prof. Judgment</span></div>
+          <span class="dev-more">View Profile <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <dialog id="devModal" class="dev-modal" aria-labelledby="dmName">
+    <button class="dm-close" id="dmClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="dm-photo"><img id="dmImg" alt=""></div>
+    <div class="dm-body">
+      <span class="mono" id="dmTag"></span>
+      <h3 id="dmName"></h3>
+      <div class="reporter-role" id="dmRole"></div>
+      <p class="reporter-desc" id="dmDesc"></p>
+      <div class="skills" id="dmSkills"></div>
+      <ul class="dm-meta"><li><i class="fa-solid fa-graduation-cap"></i> Associate in Computer Technology</li><li><i class="fa-solid fa-calendar-check"></i> Batch 2026</li></ul>
+      <a id="dmLink" class="btn rp" href="#"><span>Open Lesson</span> <span class="go"><i class="fa-solid fa-arrow-right"></i></span></a>
+    </div>
+  </dialog>
+
+  <!-- REFERENCES -->
+  <section class="glass refs" id="references">
+    <span class="mono">/ Sources &amp; Citations</span>
+    <h2>Academic References</h2>
+    <ul>
+      <li>Tumbal, Hazel. <em>Information Systems and Information Management</em>. Lecture Presentation &amp; Slides.</li>
+      <li>Llorag, Jewelyn. <em>Ethical Decision-Making in Information Technology</em>. Week 15 Instructional Material.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <a href="#home" class="brand"><span class="mark"><img src="images/logo.png" alt="" width="42" height="42"></span><span class="bt"><b>Cyber<em>Sys</em></b><small>IS &amp; IT Ethics Portal</small></span></a>
+    <nav class="foot-links" aria-label="Footer"><a href='topic1.html'>Topic 1</a><a href='topic2.html'>Topic 2</a><a href="#developers">Developers</a><a href="#references">References</a></nav>
+  </div>
+  <span class="mono">© 2026 CyberSys Enterprise Learning Portal · Developed by Hazel L. Tumbal &amp; Jewelyn A. Llorag</span>
+</footer>
+
+<script>
+(function(){
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var c=document.getElementById('fx'),x=c.getContext('2d'),W,H,D,t=0,lw=0,lt=0,id,small=innerWidth<700;
+  function size(){D=Math.min(devicePixelRatio||1,small?1:1.5);W=c.width=Math.round(innerWidth*D);H=c.height=Math.round(innerHeight*D);lw=innerWidth}
+  size();addEventListener('resize',function(){if(innerWidth!==lw){size();if(still)draw()}});
+  var R=[{y:.62,a:.13,f:1.1,s:.5,h:150,n:small?6:10,sp:.05},{y:.74,a:.10,f:.8,s:-.35,h:165,n:small?5:8,sp:.04},{y:.50,a:.09,f:1.7,s:.4,h:140,n:small?4:6,sp:.035}];
+  function draw(){
+    x.clearRect(0,0,W,H);x.globalCompositeOperation='lighter';
+    var st=Math.max(18*D,W/64);
+    R.forEach(function(r){for(var k=0;k<r.n;k++){
+      x.beginPath();
+      for(var px=0;px<=W+st;px+=st){var nx=px/W,y=H*(r.y+(.5-nx)*.42+r.a*Math.sin(nx*r.f*6.283+t*r.s)+(k-r.n/2)*r.sp*Math.sin(nx*3.77+t*r.s*.6+.8));px?x.lineTo(px,y):x.moveTo(px,y)}
+      x.strokeStyle='hsla('+(r.h+k*2)+',85%,'+(45+k*1.5)+'%,'+(.5-k*.03)+')';
+      x.lineWidth=D*(k%5===0?1.6:.8);x.stroke()}});
+  }
+  function frame(now){id=requestAnimationFrame(frame);if(now-lt<(small?34:16))return;lt=now;t+=.008;draw()}
+  draw();
+  if(!still){id=requestAnimationFrame(frame);document.addEventListener('visibilitychange',function(){cancelAnimationFrame(id);if(!document.hidden)id=requestAnimationFrame(frame)})}
+
+  document.querySelectorAll('.rp').forEach(function(b){
+    b.addEventListener('pointerdown', function(e){
+      var r = b.getBoundingClientRect(), d = Math.max(r.width,r.height), s = document.createElement('span');
+      s.className = 'ripple'; s.style.cssText = 'width:'+d+'px;height:'+d+'px;left:'+(e.clientX-r.left-d/2)+'px;top:'+(e.clientY-r.top-d/2)+'px';
+      b.appendChild(s); setTimeout(function(){ s.remove(); }, 800);
+    });
+  });
+
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches)document.querySelectorAll('.glass').forEach(function(g){var p=0,ex,ey;g.addEventListener('pointermove',function(e){ex=e.clientX;ey=e.clientY;if(p)return;p=requestAnimationFrame(function(){p=0;var r=g.getBoundingClientRect();g.style.setProperty('--mx',ex-r.left+'px');g.style.setProperty('--my',ey-r.top+'px')})})});
+
+  var burger = document.getElementById('burger'), links = document.getElementById('links');
+  function menu(o){ links.classList.toggle('open',o); burger.setAttribute('aria-expanded',o); burger.firstElementChild.className = o ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'; }
+  burger.addEventListener('click', function(){ menu(!links.classList.contains('open')); });
+  links.addEventListener('click', function(e){ if(e.target.closest('a')) menu(false); });
+
+  var map = {}, side = {}, cur = 'home', pill = document.getElementById('pill');
+  document.querySelectorAll('.links a').forEach(function(a){ map[a.hash.slice(1)] = a; });
+  document.querySelectorAll('.exp a').forEach(function(a){ side[a.hash.slice(1)] = a; });
+  function place(){
+    var a = map[cur];
+    if(!a || innerWidth <= 860){ pill.style.opacity = 0; return; }
+    pill.style.opacity = 1; pill.style.width = a.offsetWidth+'px'; pill.style.transform = 'translateX('+a.offsetLeft+'px)';
+  }
+  function setActive(id){
+    if(!map[id]) return; cur = id;
+    for(var k in map) map[k].classList.toggle('active', k===id);
+    for(var q in side) side[q].classList.toggle('on', q===id);
+    place();
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(function(id){ var el = document.getElementById(id); if(el) io.observe(el); });
+  addEventListener('resize', place);
+  if(document.fonts) document.fonts.ready.then(place);
+  place();
+
+  var nav = document.getElementById('nav'), prog = document.getElementById('prog');
+  function onScroll(){
+    nav.classList.toggle('scrolled', scrollY > 24);
+    var m = document.documentElement.scrollHeight - innerHeight;
+    prog.style.transform = 'scaleX('+(m > 0 ? scrollY/m : 0)+')';
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+</script>
+<script>
+(function(){
+  var still=matchMedia('(prefers-reduced-motion: reduce)').matches, fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  // hero title word reveal
+  var h=document.getElementById('title');
+  if(h&&!still){var ws=h.textContent.trim().split(/\s+/);h.setAttribute('aria-label',h.textContent.trim());h.innerHTML='';
+    ws.forEach(function(w,i){var o=document.createElement('span');o.className='w';o.setAttribute('aria-hidden','true');var n=document.createElement('span');n.style.setProperty('--i',i);n.textContent=w;o.appendChild(n);h.appendChild(o);h.appendChild(document.createTextNode(' '));});}
+  // scroll reveal (staggered)
+  var items=document.querySelectorAll('.sec-head,.glass.topic,.glass.refs,.points li,.dev-card,.media,.stats li');
+  items.forEach(function(el){el.classList.add('rv');var sib=[].indexOf.call(el.parentElement.children,el);el.style.setProperty('--d',Math.min(sib%4,3)*.1+'s');});
+  var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  items.forEach(function(el){ro.observe(el);});
+  // nav: hide on scroll down, show on up; mobile stagger
+  var nav=document.getElementById('nav'),last=scrollY,tick=false,links=document.getElementById('links');
+  links.querySelectorAll('li').forEach(function(li,i){li.style.setProperty('--i',i);});
+  addEventListener('scroll',function(){if(tick)return;tick=true;requestAnimationFrame(function(){
+    var y=scrollY,open=links.classList.contains('open');
+    nav.classList.toggle('hide',y>last+6&&y>240&&!open); if(y<last-6||y<240)nav.classList.remove('hide');
+    last=y;tick=false;});},{passive:true});
+  // cursor glow + parallax (smoothed)
+  var cg=document.getElementById('cg'),tx=0,ty=0,cx=0,cy=0,b1=document.querySelector('.b1'),b2=document.querySelector('.b2');
+  if(fine&&!still){var on=0;function kick(){if(!on){on=1;requestAnimationFrame(loop)}}addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;kick();});addEventListener('scroll',kick,{passive:true});
+    function loop(){cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;cg.style.transform='translate3d('+cx+'px,'+cy+'px,0)';
+      var px=(cx/innerWidth-.5),py=(cy/innerHeight-.5);
+      b1.style.translate=(px*-40)+'px '+(py*-30+scrollY*.05)+'px';b2.style.translate=(px*50)+'px '+(py*40-scrollY*.04)+'px';
+      if(Math.abs(tx-cx)+Math.abs(ty-cy)>.3)requestAnimationFrame(loop);else on=0;}}
+  // 3D tilt + glare
+  if(fine&&!still)document.querySelectorAll('.dev-card').forEach(function(c){
+    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      c.classList.add('tilting');c.style.setProperty('--ry',((x-.5)*12)+'deg');c.style.setProperty('--rx',((.5-y)*10)+'deg');c.style.setProperty('--gx',x*100+'%');c.style.setProperty('--gy',y*100+'%');});
+    c.addEventListener('pointerleave',function(){c.classList.remove('tilting');c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg');});});
+  // magnetic buttons
+  if(fine&&!still)document.querySelectorAll('.btn,.cta').forEach(function(b){
+    b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.12)+'px '+((e.clientY-r.top-r.height/2)*.25)+'px';});
+    b.addEventListener('pointerleave',function(){b.style.translate='0 0';});});
+  // developer modal
+  var D={hazel:{img:'images/mee.jpg',name:'Hazel L. Tumbal',tag:'Topic 1',role:'Developer & Topic 1 Researcher',desc:'Specializes in Information Systems architecture, data management lifecycles, and modern enterprise database structures.',href:'topic1.html',lbl:'Open Topic 1 Lesson',skills:['Information Systems','Data Lifecycle','Databases','Info Quality']},
+         jewelyn:{img:'images/Llorag%2C%20Jewelyn%20A.%20copy-1%401353484755.jpg',name:'Jewelyn A. Llorag',tag:'Topic 2',role:'Developer & Topic 2 Researcher',desc:'Focuses on IT ethics, professional judgment frameworks, and moral decision-making models within technology environments.',href:'topic2.html',lbl:'Open Topic 2 Lesson',skills:['IT Ethics','Ethical Frameworks','Problem Solving','Prof. Judgment']}};
+  var m=document.getElementById('devModal'),lastEl;
+  function openM(k){var d=D[k];lastEl=document.activeElement;
+    dmImg.src=d.img;dmImg.alt=d.name;dmName.textContent=d.name;dmTag.textContent='/ '+d.tag;dmRole.textContent=d.role;dmDesc.textContent=d.desc;
+    dmSkills.innerHTML='';d.skills.forEach(function(t){var e=document.createElement('span');e.textContent=t;dmSkills.appendChild(e)});dmLink.href=d.href;dmLink.firstElementChild.textContent=d.lbl;m.classList.remove('closing');m.showModal();document.body.classList.add('lock');}
+  function closeM(){if(!m.open)return;m.classList.add('closing');setTimeout(function(){m.close();m.classList.remove('closing');},320);}
+  m.addEventListener('close',function(){document.body.classList.remove('lock');if(lastEl)lastEl.focus({preventScroll:true});});
+  m.addEventListener('cancel',function(e){e.preventDefault();closeM();});
+  m.addEventListener('click',function(e){if(e.target===m)closeM();});
+  document.getElementById('dmClose').addEventListener('click',closeM);
+  document.querySelectorAll('.dev-card').forEach(function(c){
+    c.addEventListener('click',function(){openM(c.dataset.dev);});
+    c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openM(c.dataset.dev);}});});
+})();
+
+
+/* ===== CyberSys One-Question-at-a-Time Quiz System ===== */
+(function () {
+  'use strict';
+
+  var quizData = {
+    systems: [
+      {
+        q: 'Which information system component refers to physical devices such as computers, keyboards, and servers?',
+        options: ['Software', 'Hardware', 'Procedures', 'Networks'],
+        answer: 1,
+        explanation: 'Hardware consists of the physical devices and equipment used to operate an information system.'
+      },
+      {
+        q: 'A company uses a payroll application to calculate employees’ salaries. Which component is the payroll application?',
+        options: ['Data', 'People', 'Software', 'Hardware'],
+        answer: 2,
+        explanation: 'Software refers to applications and programs that process data and perform specific tasks.'
+      },
+      {
+        q: 'A database contains customer names, product quantities, and sales figures. These records are examples of what component?',
+        options: ['Data', 'Procedures', 'Hardware', 'People'],
+        answer: 0,
+        explanation: 'Data consists of raw facts, figures, and records that can be processed into useful information.'
+      },
+      {
+        q: 'Employees who operate and manage a company’s information system belong to which component?',
+        options: ['Networks', 'Software', 'People', 'Data'],
+        answer: 2,
+        explanation: 'People are the users and professionals who operate, manage, and maintain an information system.'
+      },
+      {
+        q: 'A company establishes step-by-step instructions for entering, saving, and securing records. What component is this?',
+        options: ['Hardware', 'Procedures', 'Networks', 'Software'],
+        answer: 1,
+        explanation: 'Procedures are the established rules, instructions, and processes for using and managing a system.'
+      },
+      {
+        q: 'Which type of information system records routine transactions such as customer purchases and payments?',
+        options: ['DSS', 'EIS', 'MIS', 'TPS'],
+        answer: 3,
+        explanation: 'A Transaction Processing System (TPS) records and processes routine daily transactions.'
+      },
+      {
+        q: 'A manager receives regular reports summarizing monthly sales and department performance. Which system typically provides these reports?',
+        options: ['MIS', 'TPS', 'OAS', 'DSS'],
+        answer: 0,
+        explanation: 'A Management Information System (MIS) provides reports that help managers monitor organizational operations.'
+      },
+      {
+        q: 'A manager compares different business decisions using data and analysis tools. Which system best supports this task?',
+        options: ['TPS', 'DSS', 'OAS', 'Basic file storage'],
+        answer: 1,
+        explanation: 'A Decision Support System (DSS) helps analyze alternatives and make decisions about complex problems.'
+      },
+      {
+        q: 'What is the main purpose of an information system in an organization?',
+        options: [
+          'To store files without processing them',
+          'To collect, process, store, and distribute useful information',
+          'To replace every employee',
+          'To prevent all business decisions'
+        ],
+        answer: 1,
+        explanation: 'Information systems collect, process, store, and distribute information to support operations and decision-making.'
+      },
+      {
+        q: 'Which component connects computers and devices so they can exchange data?',
+        options: ['Procedures', 'People', 'Networks', 'Paper records'],
+        answer: 2,
+        explanation: 'Networks connect devices and systems, allowing them to communicate and share data and resources.'
+      }
+    ],
+
+    ethics: [
+      {
+        q: 'A developer chooses a security update because it will protect the greatest number of users and reduce overall harm. Which ethical framework is being applied?',
+        options: ['Virtue Ethics', 'Utilitarianism', 'Deontology', 'Justice and Fairness'],
+        answer: 1,
+        explanation: 'Utilitarianism evaluates actions by their consequences and aims to maximize benefits while minimizing harm.'
+      },
+      {
+        q: 'An IT employee refuses to access a private account without authorization, even if doing so is convenient. Which framework best explains this decision?',
+        options: ['Utilitarianism', 'Deontology', 'Profit Maximization', 'Social Popularity'],
+        answer: 1,
+        explanation: 'Deontology emphasizes duties, rules, and moral obligations rather than judging actions only by their outcomes.'
+      },
+      {
+        q: 'A technology professional consistently demonstrates honesty, integrity, courage, and responsibility. Which ethical framework focuses on these character traits?',
+        options: ['Virtue Ethics', 'Utilitarianism', 'Justice and Fairness', 'Cost-Benefit Analysis'],
+        answer: 0,
+        explanation: 'Virtue Ethics focuses on good character and the virtues that guide ethical behavior.'
+      },
+      {
+        q: 'An organization explains how personal information is collected and obtains appropriate consent. Which ethical concern is addressed?',
+        options: ['Computer speed', 'User privacy and rights', 'Office decoration', 'Hardware maintenance'],
+        answer: 1,
+        explanation: 'Respecting privacy and individual rights includes transparency, consent, and appropriate control over personal information.'
+      },
+      {
+        q: 'A company reviews its hiring algorithm to ensure applicants are treated fairly. Which ethical principle is most relevant?',
+        options: ['Justice and Fairness', 'Data duplication', 'System speed', 'File organization'],
+        answer: 0,
+        explanation: 'Justice and Fairness emphasizes equitable treatment and fair distribution of opportunities and burdens.'
+      },
+      {
+        q: 'An employee discovers that confidential customer records have been exposed. What is the most responsible action?',
+        options: [
+          'Ignore the incident',
+          'Share the records with friends',
+          'Report it through the proper security procedure and help protect the data',
+          'Delete evidence without notifying anyone'
+        ],
+        answer: 2,
+        explanation: 'Professional responsibility requires reporting security incidents appropriately and protecting confidential information.'
+      },
+      {
+        q: 'What is an early step in a systematic ethical decision-making process?',
+        options: [
+          'Immediately blame another employee',
+          'Identify and clearly define the ethical problem',
+          'Choose the easiest option without investigation',
+          'Ignore the people affected'
+        ],
+        answer: 1,
+        explanation: 'First identify and define the ethical problem, then gather facts, consider stakeholders and alternatives, and evaluate the outcome.'
+      },
+      {
+        q: 'An IT team is deciding whether to collect additional user data. Which approach is most ethical?',
+        options: [
+          'Collect everything because storage is available',
+          'Consider necessity, consent, privacy risks, and applicable policies',
+          'Avoid informing users',
+          'Use the data for unrelated purposes without permission'
+        ],
+        answer: 1,
+        explanation: 'Ethical data practices require a legitimate purpose, appropriate consent, data minimization, and privacy protection.'
+      },
+      {
+        q: 'A developer discovers a vulnerability that could expose user information. What should the developer do?',
+        options: [
+          'Publish private user data online',
+          'Ignore the vulnerability',
+          'Report it responsibly through the appropriate security channel',
+          'Sell the information'
+        ],
+        answer: 2,
+        explanation: 'Responsible disclosure means reporting vulnerabilities through appropriate channels so they can be investigated and fixed.'
+      },
+      {
+        q: 'Why should IT professionals consider stakeholders when making ethical decisions?',
+        options: [
+          'Only managers can be affected by technology',
+          'Stakeholders may experience different benefits, risks, and consequences',
+          'Stakeholders should never be consulted',
+          'It removes the need to evaluate alternatives'
+        ],
+        answer: 1,
+        explanation: 'Considering stakeholders helps identify who may be affected and supports more informed, fair, and responsible decisions.'
+      }
+    ]
+  };
+
+  function setupQuiz(card) {
+    var quizId = card.dataset.quiz;
+    var questions = quizData[quizId];
+
+    if (!questions) return;
+
+    var container = card.querySelector('.quiz-questions');
+    var progressCount = card.querySelector('.progress-count');
+    var progressBar = card.querySelector('.quiz-progress span');
+    var checkButton = card.querySelector('.quiz-check');
+    var resetButton = card.querySelector('.quiz-reset');
+    var result = card.querySelector('.quiz-result');
+    var resultTitle = card.querySelector('.result-title');
+    var resultText = card.querySelector('.result-text');
+
+    if (!container || !checkButton || !resetButton) return;
+
+    var current = 0;
+    var score = 0;
+    var answered = Array(questions.length).fill(false);
+    var selections = Array(questions.length).fill(null);
+    var locked = false;
+
+    container.innerHTML = '';
+
+    var questionPanel = document.createElement('div');
+    questionPanel.className = 'quiz-question';
+    container.appendChild(questionPanel);
+
+    var navigation = document.createElement('div');
+    navigation.className = 'quiz-navigation';
+
+    var nextButton = document.createElement('button');
+    nextButton.type = 'button';
+    nextButton.className = 'btn rp quiz-next';
+    nextButton.textContent = 'Next Question';
+    nextButton.hidden = true;
+
+    navigation.appendChild(nextButton);
+    container.appendChild(navigation);
+
+    function renderQuestion() {
+      locked = false;
+      var question = questions[current];
+      questionPanel.innerHTML = '';
+
+      var heading = document.createElement('h4');
+      var number = document.createElement('span');
+      number.className = 'quiz-number';
+      number.textContent = String(current + 1);
+
+      heading.appendChild(number);
+      heading.appendChild(document.createTextNode(question.q));
+      questionPanel.appendChild(heading);
+
+      var options = document.createElement('div');
+      options.className = 'quiz-options';
+
+      question.options.forEach(function (option, index) {
+        var label = document.createElement('label');
+        label.className = 'quiz-option';
+
+        var input = document.createElement('input');
+        input.type = 'radio';
+        input.name = quizId + '-question-' + current;
+        input.value = String(index);
+        input.checked = selections[current] === index;
+        input.disabled = answered[current];
+        input.setAttribute('aria-label', option);
+
+        var text = document.createElement('span');
+        text.textContent = option;
+
+        label.appendChild(input);
+        label.appendChild(text);
+        options.appendChild(label);
+      });
+
+      questionPanel.appendChild(options);
+
+      var feedback = document.createElement('div');
+      feedback.className = 'quiz-feedback';
+      feedback.setAttribute('aria-live', 'polite');
+      questionPanel.appendChild(feedback);
+
+      if (answered[current]) {
+        showFeedback(feedback, question, selections[current]);
+        lockOptions(options);
+      }
+
+      progressCount.textContent =
+        'Question ' + (current + 1) + ' of ' + questions.length +
+        ' · ' + answered.filter(Boolean).length + ' answered';
+
+      progressBar.style.width =
+        (answered.filter(Boolean).length / questions.length * 100) + '%';
+
+      checkButton.hidden = answered[current];
+      nextButton.hidden = !answered[current];
+      nextButton.textContent =
+        current === questions.length - 1 ? 'View Final Score' : 'Next Question';
+
+      result.classList.remove('show');
+    }
+
+    function lockOptions(options) {
+      options.querySelectorAll('input').forEach(function (input) {
+        input.disabled = true;
+      });
+    }
+
+    function showFeedback(feedback, question, selectedIndex) {
+      var correct = selectedIndex === question.answer;
+      feedback.className = 'quiz-feedback show ' + (correct ? 'good' : 'bad');
+      feedback.textContent = (correct ? 'Correct! ' : 'Incorrect. ') +
+        question.explanation;
+    }
+
+    checkButton.addEventListener('click', function () {
+      if (locked || answered[current]) return;
+
+      var selected = questionPanel.querySelector('input[type="radio"]:checked');
+
+      if (!selected) {
+        var missing = questionPanel.querySelector('.quiz-feedback');
+        missing.className = 'quiz-feedback show bad';
+        missing.textContent = 'Please select an answer before checking.';
+        return;
+      }
+
+      locked = true;
+      var question = questions[current];
+      var selectedIndex = Number(selected.value);
+
+      selections[current] = selectedIndex;
+      answered[current] = true;
+
+      if (selectedIndex === question.answer) score++;
+
+      var feedback = questionPanel.querySelector('.quiz-feedback');
+      showFeedback(feedback, question, selectedIndex);
+
+      questionPanel.querySelectorAll('.quiz-option').forEach(function (label, index) {
+        if (index === question.answer) label.classList.add('correct');
+        if (index === selectedIndex && selectedIndex !== question.answer) {
+          label.classList.add('incorrect');
+        }
+      });
+
+      lockOptions(questionPanel.querySelector('.quiz-options'));
+
+      progressCount.textContent =
+        'Question ' + (current + 1) + ' of ' + questions.length +
+        ' · ' + answered.filter(Boolean).length + ' answered';
+
+      progressBar.style.width =
+        (answered.filter(Boolean).length / questions.length * 100) + '%';
+
+      checkButton.hidden = true;
+      nextButton.hidden = false;
+    });
+
+    nextButton.addEventListener('click', function () {
+      if (current < questions.length - 1) {
+        current++;
+        renderQuestion();
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+
+      showFinalResult();
+    });
+
+    function showFinalResult() {
+      var percentage = Math.round(score / questions.length * 100);
+      var message;
+
+      if (percentage === 100) {
+        message = 'Perfect score! Excellent understanding of this topic.';
+      } else if (percentage >= 80) {
+        message = 'Great job! Review the explanations to strengthen your knowledge.';
+      } else if (percentage >= 60) {
+        message = 'Good effort! Review the lesson and try again to improve your score.';
+      } else {
+        message = 'Keep learning! Revisit the lesson material and retake the quiz when ready.';
+      }
+
+      questionPanel.innerHTML = '';
+
+      var heading = document.createElement('h3');
+      heading.textContent = 'Quiz Completed!';
+      questionPanel.appendChild(heading);
+
+      var scoreDisplay = document.createElement('p');
+      scoreDisplay.className = 'quiz-final-score';
+      scoreDisplay.textContent = score + ' / ' + questions.length +
+        ' correct (' + percentage + '%)';
+      questionPanel.appendChild(scoreDisplay);
+
+      var messageDisplay = document.createElement('p');
+      messageDisplay.textContent = message;
+      questionPanel.appendChild(messageDisplay);
+
+      progressCount.textContent = 'Completed · ' + questions.length + ' / ' +
+        questions.length + ' answered';
+      progressBar.style.width = '100%';
+
+      checkButton.hidden = true;
+      nextButton.hidden = true;
+
+      resultTitle.textContent = 'Final Score: ' + score + ' / ' + questions.length;
+      resultText.textContent = message;
+      result.classList.add('show');
+
+      result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    resetButton.addEventListener('click', function () {
+      current = 0;
+      score = 0;
+      answered = Array(questions.length).fill(false);
+      selections = Array(questions.length).fill(null);
+      locked = false;
+
+      result.classList.remove('show');
+      resultTitle.textContent = 'Your Result';
+      resultText.textContent = '';
+
+      renderQuestion();
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    renderQuestion();
+  }
+
+  document.querySelectorAll('.quiz-card[data-quiz]').forEach(setupQuiz);
+})();
+
+</script>
+</body>
+</html>
